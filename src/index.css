@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mesh-color-1: hsla(230, 100%, 97%, 1);
+  --mesh-color-2: hsla(260, 100%, 95%, 1);
+  --mesh-color-3: hsla(180, 100%, 96%, 1);
+  --mesh-color-4: hsla(330, 100%, 96%, 1);
+}
+
+@layer base {
+  body {
+    @apply text-slate-900 antialiased selection:bg-indigo-100 selection:text-indigo-900;
+    min-height: 100vh;
+    background:
+      radial-gradient(at 0% 0%, var(--mesh-color-1) 0, transparent 50%),
+      radial-gradient(at 50% 0%, var(--mesh-color-2) 0, transparent 50%),
+      radial-gradient(at 100% 0%, var(--mesh-color-3) 0, transparent 50%),
+      radial-gradient(at 50% 50%, var(--mesh-color-4) 0, transparent 50%),
+      radial-gradient(at 0% 100%, var(--mesh-color-2) 0, transparent 50%),
+      radial-gradient(at 100% 100%, var(--mesh-color-1) 0, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+/* Glassmorphism Utilities */
+.glass-effect {
+  @apply bg-white/70 backdrop-blur-md border border-white/40;
+}
+
+.glass-pill {
+  @apply bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm transition-all duration-300;
+}
+
+.glass-card {
+  @apply bg-white/40 backdrop-blur-sm border border-white/60 shadow-xl shadow-slate-200/50 transition-all duration-300;
+}
+
+/* Glow & Shadows */
+.glow-hover:hover {
+  box-shadow: 0 0 30px -10px rgba(99, 102, 241, 0.4);
+}
+
+.glow-indigo {
+  box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.3);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700;
+}
+
+/* Hide scrollbar for element */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
