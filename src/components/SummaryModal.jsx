@@ -12,13 +12,9 @@ const SummaryModal = ({ isOpen, onClose, newsItem }) => {
             setSummary('');
             setIsLoading(true);
 
-            // Trigger summary generation
             const generate = async () => {
                 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-                console.log("Generating summary... Key exists?", !!apiKey);
-
                 try {
-                    // Build richer context
                     let context = `Title: ${newsItem.title}\n`;
                     if (newsItem.description) context += `Description: ${newsItem.description}\n`;
                     context += `Source: ${newsItem.source}\n`;
@@ -41,7 +37,6 @@ const SummaryModal = ({ isOpen, onClose, newsItem }) => {
         <AnimatePresence>
             {isOpen && newsItem && (
                 <>
-                    {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -50,7 +45,6 @@ const SummaryModal = ({ isOpen, onClose, newsItem }) => {
                         className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[60]"
                     />
 
-                    {/* Modal */}
                     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95, y: 40 }}
@@ -58,7 +52,6 @@ const SummaryModal = ({ isOpen, onClose, newsItem }) => {
                             exit={{ opacity: 0, scale: 0.95, y: 40 }}
                             className="glass-effect w-full max-w-2xl rounded-2xl shadow-2xl pointer-events-auto flex flex-col max-h-[85vh] overflow-hidden border-white/40"
                         >
-                            {/* Hero Image (if available) or Pattern */}
                             <div className="h-48 bg-slate-100 relative shrink-0">
                                 {newsItem.image ? (
                                     <div className="absolute inset-0">
@@ -99,9 +92,7 @@ const SummaryModal = ({ isOpen, onClose, newsItem }) => {
                                 </div>
                             </div>
 
-                            {/* Content Body */}
                             <div className="p-6 md:p-8 overflow-y-auto bg-white">
-                                {/* AI Summary Section */}
                                 <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-6 mb-6 shadow-sm">
                                     <div className="flex items-center gap-2 mb-4">
                                         <Sparkles className="text-indigo-600" size={18} />
@@ -131,7 +122,6 @@ const SummaryModal = ({ isOpen, onClose, newsItem }) => {
                                 )}
                             </div>
 
-                            {/* Footer */}
                             <div className="p-4 bg-slate-50 border-t border-slate-200 flex justify-end shrink-0">
                                 <a
                                     href={newsItem.url}

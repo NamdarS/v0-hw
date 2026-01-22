@@ -3,12 +3,11 @@ import { ExternalLink, ThumbsUp, Clock } from 'lucide-react';
 import { CATEGORY_COLORS } from '../services/aggregator';
 
 const NewsCard = ({ item, onClick, dateFormat = 'time' }) => {
-    // Get domain for favicon or display
     let domain = '';
     try {
         domain = new URL(item.url).hostname;
     } catch (e) {
-        domain = item.source; // fallback
+        domain = item.source;
     }
 
     return (
@@ -21,7 +20,6 @@ const NewsCard = ({ item, onClick, dateFormat = 'time' }) => {
             onClick={() => onClick(item)}
             className="group relative glass-card rounded-xl overflow-hidden glow-hover transition-soft cursor-pointer flex flex-col h-full"
         >
-            {/* Hero Image Section - Tighter Aspect Ratio */}
             <div className="relative aspect-[16/8] overflow-hidden bg-white/10">
                 <img
                     src={item.image}
@@ -33,7 +31,6 @@ const NewsCard = ({ item, onClick, dateFormat = 'time' }) => {
             </div>
 
             <div className="p-3 flex flex-col flex-grow">
-                {/* Header: Source/Favicon & Category - Tighter Spacing */}
                 <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-1.5">
                         <div className="w-4 h-4 rounded-full bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-200">
@@ -60,7 +57,6 @@ const NewsCard = ({ item, onClick, dateFormat = 'time' }) => {
                     </div>
                 </div>
 
-                {/* Title - Significantly Smaller and Tighter */}
                 <h3
                     className="text-sm font-bold text-slate-900 leading-[1.2] mb-1.5 group-hover:text-indigo-600 transition-colors line-clamp-2 text-ellipsis overflow-hidden"
                     title={item.title}
@@ -68,7 +64,6 @@ const NewsCard = ({ item, onClick, dateFormat = 'time' }) => {
                     {item.title}
                 </h3>
 
-                {/* Footer Info - Ultra Compact */}
                 <div className="flex items-center justify-between text-[9px] text-slate-400 mt-auto pt-1.5 border-t border-slate-50">
                     <div className="flex items-center gap-2">
                         <div className="flex items-center gap-0.5">

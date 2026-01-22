@@ -24,7 +24,6 @@
   }
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -37,7 +36,6 @@
   @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
 }
 
-/* Glassmorphism Utilities */
 .glass-effect {
   @apply bg-white/70 backdrop-blur-md border border-white/40;
 }
@@ -50,7 +48,6 @@
   @apply bg-white/40 backdrop-blur-sm border border-white/60 shadow-xl shadow-slate-200/50 transition-all duration-300;
 }
 
-/* Glow & Shadows */
 .glow-hover:hover {
   box-shadow: 0 0 30px -10px rgba(99, 102, 241, 0.4);
 }
@@ -63,7 +60,6 @@
   @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700;
 }
 
-/* Hide scrollbar for element */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

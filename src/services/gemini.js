@@ -1,12 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Local cache to avoid redundant AI calls on every refresh
 const VERIFIED_CACHE = new Map();
 
-/**
- * @param {string} content - The text or URL to summarize.
- * @returns {Promise<string>} The AI response.
- */
 export const summarizeArticle = async (content) => {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) return "Missing API Key.";
@@ -25,16 +20,12 @@ export const summarizeArticle = async (content) => {
     }
 };
 
-/**
- * Intelligent filter for tech news.
- */
 export const filterArticlesAI = async (stories) => {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) return new Set(stories.map(s => s.id));
 
     const ai = new GoogleGenAI({ apiKey });
 
-    // 1. Separate stories into Cached and New
     const toCheck = [];
     const verifiedIds = new Set();
 
@@ -48,7 +39,6 @@ export const filterArticlesAI = async (stories) => {
 
     if (toCheck.length === 0) return verifiedIds;
 
-    // 2. Batch check the new ones
     const BATCH_SIZE = 40;
     const candidates = toCheck.slice(0, BATCH_SIZE);
 
@@ -70,7 +60,6 @@ ${candidates.map((s, i) => `${i}. ${s.title}`).join('\n')}`;
         const match = text.match(/\[.*\]/s);
         const validIndices = match ? JSON.parse(match[0]) : [];
 
-        // 3. Update Cache
         const passedIds = new Set(validIndices.map(idx => candidates[idx]?.id).filter(Boolean));
 
         candidates.forEach(s => {
@@ -82,6 +71,6 @@ ${candidates.map((s, i) => `${i}. ${s.title}`).join('\n')}`;
         return verifiedIds;
     } catch (error) {
         console.error("AI Filtering Error:", error);
-        return new Set(stories.map(s => s.id)); // Fallback
+        return new Set(stories.map(s => s.id));
     }
 };

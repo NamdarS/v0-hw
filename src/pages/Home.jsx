@@ -8,10 +8,7 @@ import SummaryModal from '../components/SummaryModal';
 import { Loader2, Flame, Calendar, Clock } from 'lucide-react';
 
 const Home = () => {
-    // State
     const [newsGroups, setNewsGroups] = useState({ today: [], week: [], older: [] });
-    // Keep filtered state flat for simplicity or filtering sections? 
-    // Let's filter the source data then group it.
     const [allNews, setAllNews] = useState([]);
     const [category, setCategory] = useState('All');
     const [loading, setLoading] = useState(true);
@@ -26,7 +23,6 @@ const Home = () => {
 
         let filtered = allNews;
         if (category !== 'All') {
-            // Fix: Check if the array of categories includes the selected one
             filtered = allNews.filter(item => item.categories && item.categories.includes(category));
         }
         setNewsGroups(groupNewsByTime(filtered));
@@ -65,7 +61,6 @@ const Home = () => {
                     </div>
                 ) : (
                     <div className="space-y-6">
-                        {/* Breaking News Rail */}
                         {newsGroups.today.length > 0 && (
                             <section>
                                 <div className="flex items-center gap-2 mb-2 px-1">
@@ -83,7 +78,6 @@ const Home = () => {
                             </section>
                         )}
 
-                        {/* This Week Rail */}
                         {newsGroups.week.length > 0 && (
                             <section>
                                 <div className="flex items-center gap-2 mb-3 px-1">
@@ -101,7 +95,6 @@ const Home = () => {
                             </section>
                         )}
 
-                        {/* Older Rail */}
                         {newsGroups.older.length > 0 && (
                             <section>
                                 <div className="flex items-center gap-2 mb-3 px-1">

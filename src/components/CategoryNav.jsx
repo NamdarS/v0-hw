@@ -4,9 +4,6 @@ const CategoryNav = ({ selected, onSelect }) => {
     return (
         <div className="flex gap-2 overflow-x-auto pb-4 pt-2 scrollbar-hide">
             {CATEGORIES.map((category) => {
-                // Extract base color class or fallback
-                // This is a bit hacky as the const has full strings. 
-                // Let's simplified: If active, use the full style. If not, gray.
                 const activeStyle = CATEGORY_COLORS[category] || CATEGORY_COLORS.General;
 
                 return (

@@ -1,6 +1,5 @@
 const BASE_URL = 'https://newsapi.org/v2/top-headlines';
 
-// Mock data for fallback
 const MOCK_NEWS = [
     {
         title: "SpaceX successfully launches next-gen Starship, promising cheaper orbital transport",
@@ -34,23 +33,19 @@ const MOCK_NEWS = [
 export const fetchMainstreamNews = async () => {
     const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
-    // Use mock if no key, but warn in console
     if (!apiKey) {
         console.warn('NewsAPI Key missing. Using Mock Data.');
         return MOCK_NEWS;
     }
 
     try {
-        console.log(`Fetching NewsAPI with Key: ${apiKey ? 'Present' : 'Missing'}...`);
         const response = await fetch(`${BASE_URL}?category=technology&language=en&pageSize=40&apiKey=${apiKey}`);
         const data = await response.json();
 
         if (data.status === 'ok') {
-            console.log(`NewsAPI Success! Fetched ${data.articles.length} articles.`);
             return data.articles;
         } else {
             console.error('NewsAPI Error Response:', data);
-            // Fallback to mock on error
             return MOCK_NEWS;
         }
     } catch (error) {
