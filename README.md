@@ -53,7 +53,9 @@ Currently, aggregation happens in the browser.
 Summaries are generated only when the user clicks an article.
 - **Tradeoff**: Reduces initial load time and API quota usage significantly, though users must wait ~1s for the AI to summarize article contents when opening a modal.
 
-### 
+### 4. Mathematical vs. Semantic Ranking
+Articles are ranked based on a weighted mathematical score (balancing time and native image availability) rather than a deep LLM-based semantic analysis of content relevance.
+- **Tradeoff**: Provides near-instant sorting and grouping for hundreds of items. While semantic AI ranking would be more "intelligent," it would introduce 5-10 seconds of latency to the initial load.
 
----
-Built with ❤️ using React, Vite, and Tailwind CSS.
+## AI tools used
+I used copilot and chatgpt at various steps to aid with design and implementation, and gemini is being used for the summarization of articles.
